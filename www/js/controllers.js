@@ -1,6 +1,4 @@
-angular.module('starter.controllers', [])
-
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+angular.module('starter.controllers', []).controller('AppCtrl', function ($scope, $ionicModal, $timeout) {
     console.log('App ctrl');
 
     // With the new view caching in Ionic, Controllers are only called
@@ -16,72 +14,68 @@ angular.module('starter.controllers', [])
     // Create the login modal that we will use later
     $ionicModal.fromTemplateUrl('templates/login.html', {
         scope: $scope
-    }).then(function(modal) {
+    }).then(function (modal) {
         $scope.modal = modal;
     });
 
     // Triggered in the login modal to close it
-    $scope.closeLogin = function() {
+    $scope.closeLogin = function () {
         $scope.modal.hide();
     };
 
     // Open the login modal
-    $scope.login = function() {
+    $scope.login = function () {
         $scope.modal.show();
     };
 
     // Perform the login action when the user submits the login form
-    $scope.doLogin = function() {
+    $scope.doLogin = function () {
         console.log('Doing login', $scope.loginData);
 
         // Simulate a login delay. Remove this and replace with your login
         // code if using a login system
-        $timeout(function() {
+        $timeout(function () {
             $scope.closeLogin();
         }, 1000);
     };
-})
-
-.controller('ProfileCtrl', function($scope) {
+}).controller('ProfileCtrl', function ($scope) {
     console.log('Profile ctrl');
-    $scope.signout = function() {
-      console.log('sign out logic here');
+    $scope.signout = function () {
+        console.log('sign out logic here');
     };
-})
-
-.directive('ethiCamera', function($cordovaCamera, $cordovaDialogs) {
+}).directive('ethiCamera', function ($cordovaCamera, $cordovaDialogs) {
     return {
-      restrict: 'EA',
-      scope: {},
-      templateUrl: '../templates/camera.html',
-      link: function ($scope, element, attrs) {
+        restrict: 'EA',
+        scope: {},
+        templateUrl: '../templates/camera.html',
+        link: function ($scope, element, attrs) {
 
-        $scope.takePicture = function() {
-          var options = {
-            quality : 100,
-            destinationType : Camera.DestinationType.DATA_URL,
-            sourceType : Camera.PictureSourceType.CAMERA,
-            allowEdit : true,
-            encodingType: Camera.EncodingType.JPEG,
-            targetWidth: 300,
-            targetHeight: 300,
-            correctOrientation: false,
-            popoverOptions: CameraPopoverOptions,
-            saveToPhotoAlbum: false,
-            cameraDirection: 0
-          };
+            $scope.takePicture = function () {
+                var options = {
+                    quality: 100,
+                    destinationType: Camera.DestinationType.DATA_URL,
+                    sourceType: Camera.PictureSourceType.CAMERA,
+                    allowEdit: true,
+                    encodingType: Camera.EncodingType.JPEG,
+                    targetWidth: 300,
+                    targetHeight: 300,
+                    correctOrientation: false,
+                    popoverOptions: CameraPopoverOptions,
+                    saveToPhotoAlbum: false,
+                    cameraDirection: 1
+                };
+                console.log(options);
 
-          $cordovaCamera.getPicture(options).then(
-            (imageData) => {
-              console.log(imageData);
-              $scope.imgURI = "data:image/jpeg;base64," + imageData;
-              $scope.backgroundProfileImage = {
-                'background-image': 'url(data:image/jpeg;base64,' + imageData + ') !important'
-              };
-            },
-            (err) => $cordovaDialogs.alert(err, 'Error', 'Okay')
-          );
+                $cordovaCamera.getPicture(options).then(function (imageData) {
+                    $scope.imgURI = "url(data:image/jpeg;base64," + imageData + ')';
+                }, function (err) {
+                    if (err == 'Camera cancelled.') {
+                        return;
+                    }
+                    $cordovaDialogs.alert(err, 'Error', 'Okay');
+                });
+            };
         }
-      }
-    }
+    };
 });
+//# sourceMappingURL=controllers.js.map

@@ -1,4 +1,12 @@
 {
   "name": "ethi-modules",
-  "app_id": ""
+  "app_id": "",
+  "gulpStartupTasks": [
+    "default"
+  ],
+  "watchPatterns": [
+    "www/**/*",
+    "www/es6/*.js",
+    "!www/lib/**/*"
+  ]
 }

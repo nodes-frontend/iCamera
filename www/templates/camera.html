@@ -1,7 +1,8 @@
-<div class="center">
-  <div class="profile-portrait"
-        ng-class="backgroundProfileImage">
-    <img ng-hide="imgURI" class="camera-icon" src="../img/camera@3x.png" />
+<div class="profile-portrait__wrapper">
+  <div class="profile-portrait__holder"
+        ng-click="takePicture()"
+        ng-style="{'background-image':imgURI}">
+    <img ng-hide="imgURI" class="profile-portrait__holder--icon" src="../img/camera@3x.png" />
   </div>
+  <div><p>Choose photo</p></div>
 </div>
-<div class="center"><p>Choose photo</p></div>
