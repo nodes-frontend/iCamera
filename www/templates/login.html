@@ -1,25 +1,55 @@
-<ion-modal-view>
-  <ion-header-bar>
-    <h1 class="title">Login</h1>
-    <div class="buttons">
-      <button class="button button-clear" ng-click="closeLogin()">Close</button>
-    </div>
-  </ion-header-bar>
+<ion-view view-title="login">
+
   <ion-content>
-    <form ng-submit="doLogin()">
+
+    <form novalidate name="loginForm" ng-submit="login.doLogin(loginForm.$valid)" class="login-form" >
       <div class="list">
-        <label class="item item-input">
-          <span class="input-label">Username</span>
-          <input type="text" ng-model="loginData.username">
+
+        <label class="item item-input item-stacked-label">
+
+          <span class="input-label green">Email</span>
+
+          <input type="email"
+                 name="userEmail"
+                 ng-model="login.loginData.email"
+                 placeholder="Type here"
+                 required>
         </label>
-        <label class="item item-input">
-          <span class="input-label">Password</span>
-          <input type="password" ng-model="loginData.password">
+
+        <label class="item item-input item-stacked-label">
+
+          <span class="input-label green">Password</span>
+
+          <input type="password"
+                 name="userPassword"
+                 ng-model="login.loginData.password"
+                 placeholder="Type here"
+                 required>
         </label>
-        <label class="item">
-          <button class="button button-block button-positive" type="submit">Log in</button>
-        </label>
+
       </div>
+
+      <div class="card error center">
+        <div class="item item-text-wrap"
+             ng-show="login.loginError">
+          {{login.loginError}}
+        </div>
+      </div>
+
+      <div class="center">
+        <a class="no-underline green" href="#">Forgot password?</a>
+      </div>
+
+      <div class="button-bar submit-button center">
+
+        <input class="button"
+               type="submit"
+               value="Submit"
+               ng-disabled="loginForm.$invalid"/>
+      </div>
+
     </form>
+
   </ion-content>
-</ion-modal-view>
+
+</ion-view>

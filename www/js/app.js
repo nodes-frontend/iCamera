@@ -7,7 +7,6 @@
 angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
 
 .run(function($ionicPlatform, $http, $cordovaPush) {
-    console.log('running');
 
   /*var iosConfig = {
     "badge": true,
@@ -104,6 +103,20 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
     abstract: true,
     templateUrl: 'templates/menu.html',
     controller: 'AppCtrl'
+  })
+
+  .state('app.login', {
+    url: '/login',
+    controller: 'LoginCtrl',
+    controllerAs: 'login',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/login.html'
+      },
+      'passwordReset': {
+        templateUrl: 'templates/login.passwordReset.html'
+      }
+    }
   })
 
   .state('app.profile', {

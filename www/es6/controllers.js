@@ -1,7 +1,6 @@
 angular.module('starter.controllers', [])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
-    console.log('App ctrl');
 
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.
@@ -11,39 +10,67 @@ angular.module('starter.controllers', [])
     //});
 
     // Form data for the login modal
-    $scope.loginData = {};
+    //$scope.loginData = {};
 
     // Create the login modal that we will use later
-    $ionicModal.fromTemplateUrl('templates/login.html', {
-        scope: $scope
-    }).then(function(modal) {
-        $scope.modal = modal;
-    });
+    //$ionicModal.fromTemplateUrl('templates/login.html', {
+    //    scope: $scope
+    //}).then(function(modal) {
+    //    $scope.modal = modal;
+    //});
 
     // Triggered in the login modal to close it
-    $scope.closeLogin = function() {
-        $scope.modal.hide();
-    };
+    //$scope.closeLogin = function() {
+    //    $scope.modal.hide();
+    //};
 
     // Open the login modal
-    $scope.login = function() {
-        $scope.modal.show();
-    };
+    //$scope.login = function() {
+    //    $scope.modal.show();
+    //};
 
     // Perform the login action when the user submits the login form
-    $scope.doLogin = function() {
-        console.log('Doing login', $scope.loginData);
-
+    //$scope.doLogin = function() {
         // Simulate a login delay. Remove this and replace with your login
         // code if using a login system
-        $timeout(function() {
-            $scope.closeLogin();
-        }, 1000);
+    //    $timeout(function() {
+    //        $scope.closeLogin();
+    //    }, 1000);
+    //};
+})
+
+.controller('LoginCtrl', function($scope) {
+    console.log('LoginCtrl');
+    $scope.loginData = {};
+
+    //debug
+    var successErrorToggle = true;
+
+    $scope.resetPassword = function(valid) {
+      console.log(valid, 'Resetting pw', $scope.loginData);
+    };
+
+    $scope.doLogin = function(valid) {
+      console.log(valid, 'Doing login', $scope.loginData);
+
+      // Simulate a login delay. Remove this and replace with your login
+      // code if using a login system
+      $timeout(function() {
+
+        if(successErrorToggle) {
+          console.log('Logged in');
+          $scope.loginError = false;
+        } else {
+          $scope.loginError = "The email and password don't match.";
+        }
+        successErrorToggle = !successErrorToggle;
+
+      }, 1000);
     };
 })
 
 .controller('ProfileCtrl', function($scope) {
-    console.log('Profile ctrl');
+    console.log('ProfileCtrl');
     $scope.signout = function() {
       console.log('sign out logic here');
     };
