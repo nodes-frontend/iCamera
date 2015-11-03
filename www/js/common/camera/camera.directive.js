@@ -6,18 +6,15 @@ ngModule.module('camera')
         .directive('Camera', Camera);
 
 /* @ngInject */
-function Camera($cordovaCamera, $cordovaDialogs) {
+class Camera {
 
-  const directive = {
-    restrict: 'EA',
-    templateUrl: 'camera.template.html',
-    link: link
-  };
+  constructor() {
+    this.template = require('./camera.template.html');
+    this.restrict = 'AEC';
+  }
 
-  return directive;
-
-  function link($scope, element, attrs) {
-
+  link($scope, element, attrs, $cordovaCamera, $cordovaDialogs) {
+    console.log("ethiCamera link function");
     const options = {
       quality           : 100,
       destinationType   : Camera.DestinationType.DATA_URL,

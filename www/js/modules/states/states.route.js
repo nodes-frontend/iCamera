@@ -8,20 +8,16 @@ ngModule.config(function($stateProvider, $urlRouterProvider) {
     .state('app', {
       url: '/app',
       abstract: true,
-      templateUrl: 'templates/menu.html',
-      controller: 'AppCtrl'
+      templateUrl: 'www/js/modules/application/menu.template.html'
     })
 
     .state('app.login', {
       url: '/login',
       views: {
         'menuContent': {
+          templateUrl: 'www/js/modules/login/login.template.html',
           controller: 'LoginCtrl',
-          templateUrl: 'templates/login.template.html'
-        },
-        'passwordReset': {
-          controller: 'LoginCtrl',
-          templateUrl: 'templates/login.passwordReset.html'
+          controllerAs: 'login'
         }
       }
     })
@@ -30,8 +26,9 @@ ngModule.config(function($stateProvider, $urlRouterProvider) {
       url: '/profile',
       views: {
         'menuContent': {
-          templateUrl: 'templates/profile.html',
-          controller: 'ProfileCtrl'
+          templateUrl: 'www/js/modules/profile/profile.template.html',
+          controller: 'ProfileCtrl',
+          controllerAs: 'profile'
         }
       }
     });
