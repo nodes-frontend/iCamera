@@ -11,18 +11,19 @@ var babel = require("gulp-babel");
 var plumber = require("gulp-plumber");
 
 var paths = {
-  sass: ['./scss/**/*.scss'],
-  es6: ['./www/es6/*.js']
+  sass: ['./scss/*.scss'],
+  es6: ['./www/js/**/**/*.js']
 };
 
-gulp.task('babel', function() {
-  return gulp.src(paths.es6)
-    .pipe(plumber())
+gulp.task('babel', function(done) {
+  return gulp.src('./scss/ionic.app.scss')
+    //.pipe(plumber())
     .pipe(sourcemaps.init())
     .pipe(babel()) //transpile
     //.pipe(concat("all.js"))
     .pipe(sourcemaps.write("."))
-    .pipe(gulp.dest("www/js")); //pipe to the destination folder
+    .pipe(gulp.dest("www/js/controllers.js"))
+  .on('end', done);
 });
 
 gulp.task('default', ['babel', 'sass', 'watch']);
@@ -31,11 +32,6 @@ gulp.task('sass', function(done) {
   gulp.src(paths.sass)
     .pipe(sass())
     .on('error', sass.logError)
-    .pipe(gulp.dest('./www/css/'))
-    .pipe(minifyCss({
-      keepSpecialComments: 0
-    }))
-    .pipe(rename({ extname: '.min.css' }))
     .pipe(gulp.dest('./www/css/'))
     .on('end', done);
 });

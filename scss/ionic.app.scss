@@ -21,6 +21,11 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
+@import "www/js/common/camera/camera";
+
+@import "www/js/modules/login/login";
+@import "www/js/modules/profile/profile";
+
 ion-content {
   background-color:#f5f8fc;
 }
